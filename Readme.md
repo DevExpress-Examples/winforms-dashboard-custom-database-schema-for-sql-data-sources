@@ -16,3 +16,8 @@ To see the result, add a new query or edit the existing query. The [Query Builde
 
 
 ![](/images/screenshot.png)
+
+## Documentation
+
+- [SQL Data Source](https://docs.devexpress.com/Dashboard/16151)
+- [Use the Query Builder](http://docs.devexpress.com/Dashboard/16152)
