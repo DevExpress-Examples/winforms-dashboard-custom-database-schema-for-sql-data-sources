@@ -4,7 +4,7 @@
 * [Form1.cs](./CS/Dashboard_CustomSchemaProvider/Form1.cs) (VB: [Form1.vb](./VB/Dashboard_CustomSchemaProvider/Form1.vb))
 * [CustomDBSchemaProvider.cs](./CS/Dashboard_CustomSchemaProvider/CustomDBSchemaProvider.cs) (VB: [FormCustomDBSchemaProvider1.vb](./VB/Dashboard_CustomSchemaProvider/CustomDBSchemaProvider.vb))
 <!-- default file list end -->
-# How to: Customize the Data Store Schema to Restrict Fields in Query Builder 
+# Dashboard for WinForms - How to customize the Data Store Schema to Restrict Fields in Query Builder 
 
 This example demonstrates how to customize a data store schema for a dashboard data source that uses a connection to the _nwind.mdb_ database.
 
