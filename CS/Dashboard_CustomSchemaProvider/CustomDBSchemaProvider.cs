@@ -3,26 +3,20 @@ using DevExpress.DataAccess.Sql;
 using DevExpress.Xpo.DB;
 using System.Collections.Specialized;
 
-namespace Dashboard_CustomSchemaProvider
-{
+namespace Dashboard_CustomSchemaProvider {
     // Creates a new class that defines a custom data store schema by implementing the 
     // IDBSchemaProvider interface.
-    class CustomDBSchemaProvider : IDBSchemaProviderEx
-    {
+    class CustomDBSchemaProvider : IDBSchemaProviderEx {
         DBTable[] tables;
-        public void LoadColumns(SqlDataConnection connection, params DBTable[] tables)
-        {
-            foreach (DBTable table in tables)
-            {
-                if (table.Name == "Categories" && table.Columns.Count == 0)
-                {
+        public void LoadColumns(SqlDataConnection connection, params DBTable[] tables) {
+            foreach (DBTable table in tables) {
+                if (table.Name == "Categories" && table.Columns.Count == 0) {
                     DBColumn categoryIdColumn = new DBColumn { Name = "CategoryID" };
                     table.AddColumn(categoryIdColumn);
                     DBColumn categoryNameColumn = new DBColumn { Name = "CategoryName" };
                     table.AddColumn(categoryNameColumn);
                 }
-                if (table.Name == "Products" && table.Columns.Count == 0)
-                {
+                if (table.Name == "Products" && table.Columns.Count == 0) {
                     DBColumn categoryIdColumn = new DBColumn { Name = "CategoryID" };
                     table.AddColumn(categoryIdColumn);
                     DBColumn supplierIdColumn = new DBColumn { Name = "SupplierID" };
@@ -41,8 +35,7 @@ namespace Dashboard_CustomSchemaProvider
                         CustomDBSchemaProvider.CreatePrimaryKeys("SupplierID"));
                     table.ForeignKeys.Add(foreignKey2);
                 }
-                if (table.Name == "Suppliers" && table.Columns.Count == 0)
-                {
+                if (table.Name == "Suppliers" && table.Columns.Count == 0) {
                     DBColumn supplierIdColumn = new DBColumn { Name = "SupplierID" };
                     table.AddColumn(supplierIdColumn);
                     DBColumn companyNameColumn = new DBColumn { Name = "CompanyName" };
@@ -51,20 +44,16 @@ namespace Dashboard_CustomSchemaProvider
             }
         }
 
-        public static StringCollection CreatePrimaryKeys(params string[] names)
-        {
+        public static StringCollection CreatePrimaryKeys(params string[] names) {
             StringCollection collection = new StringCollection();
             collection.AddRange(names);
             return collection;
         }
 
-        public DBTable[] GetTables(SqlDataConnection connection, params string[] tableList)
-        {
+        public DBTable[] GetTables(SqlDataConnection connection, params string[] tableList) {
             var cp = connection.ConnectionParameters as Access97ConnectionParameters;
-            if (cp != null && cp.FileName.Contains("nwind.mdb"))
-            {
-                if (tables != null)
-                {
+            if (cp != null && cp.FileName.Contains("nwind.mdb")) {
+                if (tables != null) {
                     return tables;
                 }
 
@@ -78,14 +67,12 @@ namespace Dashboard_CustomSchemaProvider
             return tables;
         }
 
-        public DBTable[] GetViews(SqlDataConnection connection, params string[] viewList)
-        {
+        public DBTable[] GetViews(SqlDataConnection connection, params string[] viewList) {
             DBTable[] views = new DBTable[0];
             return views;
         }
 
-        public DBStoredProcedure[] GetProcedures(SqlDataConnection connection, params string[] procedureList)
-        {
+        public DBStoredProcedure[] GetProcedures(SqlDataConnection connection, params string[] procedureList) {
             DBStoredProcedure[] storedProcedures = new DBStoredProcedure[0];
             return storedProcedures;
         }
