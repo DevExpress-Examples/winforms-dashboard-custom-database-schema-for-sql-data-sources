@@ -26,7 +26,8 @@ This provider displays only the following database entities:
 
 File: [ManualDBSchemaProvider.cs](./CS/Dashboard_CustomSchemaProvider/ManualDBSchemaProvider.cs) (VB: [ManualDBSchemaProvider.vb](./VB/Dashboard_CustomSchemaProvider/ManualDBSchemaProvider.vb))
 
-This provider loads two tables (`Categories` and `Products`) a connection to the _nwind.mdb_ database. Both tables contain only two columns and the tables are linked by the `CategoryID` field.
+This provider loads two tables (`Categories` and `Products`) for the nwind.mdb database connection.
+. Both tables contain only two columns and the tables are linked by the `CategoryID` field.
 
 ![](images/custom-database-tables.png)
 
