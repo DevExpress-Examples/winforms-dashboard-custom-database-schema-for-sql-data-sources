@@ -38,7 +38,7 @@ namespace Dashboard_CustomSchemaProvider {
         }
 
         public DBTable[] GetTables(SqlDataConnection connection, params string[] tableList) {
-            // Loads only the Categories and Products tables for the NWindConnectionString connection.
+            // Loads only the Categories and Products tables for the nwind.mdb database connection.
             var cp = connection.ConnectionParameters as Access97ConnectionParameters;
             if (cp != null && cp.FileName.Contains("nwind.mdb")) {
                 if (tables != null) {
