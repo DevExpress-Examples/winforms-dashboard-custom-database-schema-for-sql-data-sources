@@ -1,8 +1,4 @@
-<!-- default badges list -->
-![](https://img.shields.io/endpoint?url=https://codecentral.devexpress.com/api/v1/VersionRange/128581398/19.1.3%2B)
-[![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/E5051)
-[![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
-<!-- default badges end -->
+
 # Dashboard for WinForms - How to customize a database schema for SQL data sources
 
 This example shows how to create a custom database schema for the dashboard. The example contains two implementation of the [IDBSchemaProviderEx](https://docs.devexpress.com/CoreLibraries/DevExpress.DataAccess.Sql.IDBSchemaProviderEx) interface, `LimitDBSchemaProvider` and `ManualDBSchemaProvider`. Use the [DashboardDesigner.CustomDBSchemaProviderEx](https://docs.devexpress.com/Dashboard/DevExpress.DashboardWeb.DevExpress.DashboardWin.DashboardDesigner.CustomDBSchemaProviderEx) property to specify database a custom schema provider for [SQL Data Sources](https://docs.devexpress.com/Dashboard/16151/winforms-dashboard/winforms-designer/create-dashboards-in-the-winforms-designer/providing-data/sql-data-source).
