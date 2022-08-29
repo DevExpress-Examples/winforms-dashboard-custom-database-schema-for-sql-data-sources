@@ -4,42 +4,29 @@ using DevExpress.Xpo.DB;
 using System.Collections.Specialized;
 
 namespace Dashboard_CustomSchemaProvider {
-    // Creates a new class that defines a custom data store schema by implementing the 
-    // IDBSchemaProvider interface.
-    class CustomDBSchemaProvider : IDBSchemaProviderEx {
+    public class ManualDBSchemaProvider : IDBSchemaProviderEx {
         DBTable[] tables;
         public void LoadColumns(SqlDataConnection connection, params DBTable[] tables) {
+            // Loads the specified columns in the Categories and Products tables.
             foreach (DBTable table in tables) {
                 if (table.Name == "Categories" && table.Columns.Count == 0) {
-                    DBColumn categoryIdColumn = new DBColumn { Name = "CategoryID" };
+                    DBColumn categoryIdColumn = new DBColumn { Name = "CategoryID", ColumnType = DBColumnType.Int32 };
                     table.AddColumn(categoryIdColumn);
-                    DBColumn categoryNameColumn = new DBColumn { Name = "CategoryName" };
+                    DBColumn categoryNameColumn = new DBColumn { Name = "CategoryName", ColumnType = DBColumnType.String };
                     table.AddColumn(categoryNameColumn);
                 }
                 if (table.Name == "Products" && table.Columns.Count == 0) {
-                    DBColumn categoryIdColumn = new DBColumn { Name = "CategoryID" };
+                    DBColumn categoryIdColumn = new DBColumn { Name = "CategoryID", ColumnType = DBColumnType.Int32 };
                     table.AddColumn(categoryIdColumn);
-                    DBColumn supplierIdColumn = new DBColumn { Name = "SupplierID" };
-                    table.AddColumn(supplierIdColumn);
-                    DBColumn productNameColumn = new DBColumn { Name = "ProductName" };
+                    DBColumn productNameColumn = new DBColumn { Name = "ProductName", ColumnType = DBColumnType.String };
                     table.AddColumn(productNameColumn);
 
-                    DBForeignKey foreignKey1 = new DBForeignKey(
+                    // Links the tables by the CategoryID field.
+                    DBForeignKey foreignKey = new DBForeignKey(
                         new[] { categoryIdColumn },
                         "Categories",
-                        CustomDBSchemaProvider.CreatePrimaryKeys("CategoryID"));
-                    table.ForeignKeys.Add(foreignKey1);
-                    DBForeignKey foreignKey2 = new DBForeignKey(
-                        new[] { supplierIdColumn },
-                        "Suppliers",
-                        CustomDBSchemaProvider.CreatePrimaryKeys("SupplierID"));
-                    table.ForeignKeys.Add(foreignKey2);
-                }
-                if (table.Name == "Suppliers" && table.Columns.Count == 0) {
-                    DBColumn supplierIdColumn = new DBColumn { Name = "SupplierID" };
-                    table.AddColumn(supplierIdColumn);
-                    DBColumn companyNameColumn = new DBColumn { Name = "CompanyName" };
-                    table.AddColumn(companyNameColumn);
+                        ManualDBSchemaProvider.CreatePrimaryKeys("CategoryID"));
+                    table.ForeignKeys.Add(foreignKey);
                 }
             }
         }
@@ -51,19 +38,24 @@ namespace Dashboard_CustomSchemaProvider {
         }
 
         public DBTable[] GetTables(SqlDataConnection connection, params string[] tableList) {
+            // Loads only the Categories and Products tables for the NWindConnectionString connection.
             var cp = connection.ConnectionParameters as Access97ConnectionParameters;
             if (cp != null && cp.FileName.Contains("nwind.mdb")) {
                 if (tables != null) {
                     return tables;
                 }
 
-                tables = new DBTable[3];
-                tables[0] = new DBTable("Categories");
-                tables[1] = new DBTable("Products");
-                tables[2] = new DBTable("Suppliers");
-            }
-            else
+                tables = new DBTable[2];
+
+                DBTable categoriesTable = new DBTable("Categories");
+                tables[0] = categoriesTable;
+
+                DBTable productsTable = new DBTable("Products");
+                tables[1] = productsTable;
+            } else
                 tables = new DBTable[0];
+
+            LoadColumns(connection, tables);
             return tables;
         }
 
