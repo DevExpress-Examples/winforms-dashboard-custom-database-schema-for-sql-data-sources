@@ -5,22 +5,43 @@
 <!-- default badges end -->
 # Dashboard for WinForms - How to customize a database schema for SQL data sources
 
-This example demonstrates how to customize a database schema to to restrict fields in [Query Builder](https://docs.devexpress.com/Dashboard/117275/winforms-dashboard/winforms-designer/ui-elements-and-customization/dialogs-and-wizards/query-builder?p=netframework) for a dashboard data source that uses a connection to the _nwind.mdb_ database.
+This example shows how to create a custom database schema for the dashboard. The example contains two implementation of the [IDBSchemaProviderEx](https://docs.devexpress.com/CoreLibraries/DevExpress.DataAccess.Sql.IDBSchemaProviderEx) interface, `LimitDBSchemaProvider` and `ManualDBSchemaProvider`. Use the [DashboardDesigner.CustomDBSchemaProviderEx](https://docs.devexpress.com/Dashboard/DevExpress.DashboardWeb.DevExpress.DashboardWin.DashboardDesigner.CustomDBSchemaProviderEx) property to specify a custom schema provider for [SQL Data Sources](https://docs.devexpress.com/Dashboard/16151/winforms-dashboard/winforms-designer/create-dashboards-in-the-winforms-designer/providing-data/sql-data-source).
 
-A **CustomDBSchemaProvider** class implements the  [IDBSchemaProviderEx](https://docs.devexpress.com/CoreLibraries/DevExpress.DataAccess.Sql.IDBSchemaProviderEx) interface. It defines a custom database schema that contains three related tables and eight fields.
+To see the result, add a new query or edit the existing query. The [Query Builder](https://docs.devexpress.com/Dashboard/117275) window contains only fields and tables that the custom database schema provider supplies.
 
-Click the _Use Custom DBSchema Provider_ button to assign a CustomDBSchemaProvider instance to the  [DashboardDesigner.CustomDBSchemaProviderEx](https://docs.devexpress.com/Dashboard/DevExpress.DashboardWin.DashboardDesigner.CustomDBSchemaProviderEx) property. 
+### The LimitDBSchemaProvider class
 
-To see the result, add a new query or edit the existing query. The [Query Builder](https://docs.devexpress.com/Dashboard/117275) window contains only fields and tables that the **CustomDBSchemaProvider** supplies.
+File: [LimitDBSchemaProvider.cs](./CS/Dashboard_CustomSchemaProvider/LimitDBSchemaProvider.cs) (VB: [LimitDBSchemaProvider.vb](./VB/Dashboard_CustomSchemaProvider/LimitDBSchemaProvider.vb))
 
-![](/images/screenshot.png)
+This provider displays only the following database entities:
 
-## Files to Look At:
+- Tables which names start with the letter *C*
+- Views which names start with *Order*
+- Stored procedures with zero arguments
 
-* [Form1.cs](./CS/Dashboard_CustomSchemaProvider/Form1.cs) (VB: [Form1.vb](./VB/Dashboard_CustomSchemaProvider/Form1.vb))
-* [CustomDBSchemaProvider.cs](./CS/Dashboard_CustomSchemaProvider/CustomDBSchemaProvider.cs) (VB: [FormCustomDBSchemaProvider1.vb](./VB/Dashboard_CustomSchemaProvider/CustomDBSchemaProvider.vb))
+![](images/custom-database-views.png)
+
+### The ManualDBSchemaProvider class
+
+File: [ManualDBSchemaProvider.cs](./CS/Dashboard_CustomSchemaProvider/ManualDBSchemaProvider.cs) (VB: [ManualDBSchemaProvider.vb](./VB/Dashboard_CustomSchemaProvider/ManualDBSchemaProvider.vb))
+
+This provider loads two tables (`Categories` and `Products`) a connection to the _nwind.mdb_ database. Both tables contain only two columns and the tables are linked by the `CategoryID` field.
+
+![](images/custom-database-tables.png)
+
+This technique improves the [Data Source Wizard](https://docs.devexpress.com/Dashboard/117680/) performance when loading the database schema to the dashboard.
+
+## Files to Look At
+
+* [LimitDBSchemaProvider.cs](./CS/Dashboard_CustomSchemaProvider/LimitDBSchemaProvider.cs) (VB: [LimitDBSchemaProvider.vb](./VB/Dashboard_CustomSchemaProvider/LimitDBSchemaProvider.vb))
+* [ManualDBSchemaProvider.cs](./CS/Dashboard_CustomSchemaProvider/ManualDBSchemaProvider.cs) (VB: [ManualDBSchemaProvider.vb](./VB/Dashboard_CustomSchemaProvider/ManualDBSchemaProvider.vb))
+* [Form1.cs](/CS/Dashboard_CustomSchemaProvider/Form1.cs) (VB: [Form1.vb](./VB/Dashboard_CustomSchemaProvider/Form1.vb))
 
 ## Documentation
 
-- [SQL Data Source](https://docs.devexpress.com/Dashboard/16151)
-- [Use the Query Builder](http://docs.devexpress.com/Dashboard/16152)
+* [IDBSchemaProviderEx](https://docs.devexpress.com/CoreLibraries/DevExpress.DataAccess.Sql.IDBSchemaProviderEx)
+
+## More Examples
+
+* [Dashboard for MVC - How to customize a data store schema for SQL data sources](https://github.com/DevExpress-Examples/aspnet-mvc-dashboard-how-to-customize-a-data-store-schema-for-sql-data-sources-t584271)
+* [Dashboard for ASP.NET Core - How to customize a data store schema for SQL data sources](https://github.com/DevExpress-Examples/aspnet-mvc-dashboard-how-to-customize-a-data-store-schema-for-sql-data-sources-t584271)
