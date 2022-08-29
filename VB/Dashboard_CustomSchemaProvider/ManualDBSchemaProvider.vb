@@ -39,7 +39,7 @@ Namespace Dashboard_CustomSchemaProvider
         End Function
 
         Public Function GetTables(ByVal connection As SqlDataConnection, ParamArray tableList As String()) As DBTable() Implements IDBSchemaProviderEx.GetTables
-            ' Loads only the Categories and Products tables for the NWindConnectionString connection.
+            ' Loads only the Categories and Products tables for the nwind.mdb database connection.
             Dim cp = TryCast(connection.ConnectionParameters, Access97ConnectionParameters)
             If cp IsNot Nothing AndAlso cp.FileName.Contains("nwind.mdb") Then
                 If tables IsNot Nothing Then
