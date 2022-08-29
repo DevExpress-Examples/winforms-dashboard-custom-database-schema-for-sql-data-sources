@@ -31,7 +31,7 @@ This provider loads two tables (`Categories` and `Products`) for the nwind.mdb d
 
 ![](images/custom-database-tables.png)
 
-This technique improves the [Data Source Wizard](https://docs.devexpress.com/Dashboard/117680/) performance when loading the database schema to the dashboard.
+This technique improves the [Data Source Wizard](https://docs.devexpress.com/Dashboard/17652/) performance when loading the database schema to the dashboard.
 
 ## Files to Look At
 
