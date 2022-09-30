@@ -41,7 +41,7 @@ This technique improves the [Data Source Wizard](https://docs.devexpress.com/Das
 
 ## Documentation
 
-* [IDBSchemaProviderEx](https://docs.devexpress.com/CoreLibraries/DevExpress.DataAccess.Sql.IDBSchemaProviderEx)
+* [Custom Database Schema](https://docs.devexpress.com/Dashboard/404087/winforms-dashboard/winforms-designer/create-dashboards-in-the-winforms-designer/providing-data/sql-data-source/custom-database-schema-provider?p=netframework) 
 
 ## More Examples
 
