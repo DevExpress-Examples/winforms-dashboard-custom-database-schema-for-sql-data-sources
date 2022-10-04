@@ -33,7 +33,7 @@ This provider loads two tables (`Categories` and `Products`) for the nwind.mdb d
 
 This technique improves the [Data Source Wizard](https://docs.devexpress.com/Dashboard/17652/) performance when loading the database schema to the dashboard.
 
-## Files to Look At
+## Files to Review
 
 * [LimitDBSchemaProvider.cs](./CS/Dashboard_CustomSchemaProvider/LimitDBSchemaProvider.cs) (VB: [LimitDBSchemaProvider.vb](./VB/Dashboard_CustomSchemaProvider/LimitDBSchemaProvider.vb))
 * [ManualDBSchemaProvider.cs](./CS/Dashboard_CustomSchemaProvider/ManualDBSchemaProvider.cs) (VB: [ManualDBSchemaProvider.vb](./VB/Dashboard_CustomSchemaProvider/ManualDBSchemaProvider.vb))
